@@ -4,6 +4,7 @@
     <template v-if="isUserLogin">
       <span>{{ $store.state.username }}</span> |
       <button type="button" @click="logoutUser">Logout</button>
+      <button type="button" @click="testAxios"></button>
     </template>
     <template v-else>
       <router-link to="/login">로그인</router-link> |
@@ -13,6 +14,8 @@
 </template>
 
 <script>
+import { test } from "@/api";
+
 export default {
   computed: {
     isUserLogin() {
@@ -22,7 +25,11 @@ export default {
   methods: {
     logoutUser() {
       this.$store.commit("clearUsername");
+      this.$store.commit("clearToken");
       this.$router.push("/");
+    },
+    testAxios() {
+      test();
     }
   }
 };
