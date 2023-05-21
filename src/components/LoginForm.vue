@@ -40,6 +40,8 @@ export default {
           password: this.password
         });
         this.logMessage = `${data.user.nickname} 님 환영합니다.`;
+        this.$store.commit("setUsername", data.user.username);
+        this.$router.push("/");
       } catch (e) {
         this.logMessage = "해당하는 회원이 없습니다.";
       } finally {
